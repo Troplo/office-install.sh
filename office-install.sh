@@ -8,10 +8,23 @@ echo "- Doesn't receive feature updates due to Windows 7 EoL."
 echo "- OneNote, and Teams don't work."
 echo "- Excel has a tendency to flicker when typing."
 echo ""
+
 install_prereq() {
+    package_manager="yay"
+    if command -v paru &>/dev/null; then
+        package_manager="paru"
+    elif command -v yay &>/dev/null; then
+        package_manager="yay"
+    else
+        echo ""
+        echo "Please install either yay or paru, an AUR package helper to run this script."
+        echo "yay can be found here: https://github.com/Jguer/yay"
+        echo "paru can be found here: https://github.com/Morganamilo/paru"
+        exit 1
+    fi
     echo "Installing pre-requisite packages..."
-    yay -Sy glibc libice libsm libx11 libxext libxi freetype2 libpng zlib lcms2 libgl libxcursor libxrandr glu alsa-lib fontconfig gnutls gsm libcups libdbus libexif libgphoto2 libldap libpulse libxcomposite libxinerama libxml2 libxslt libxxf86vm mpg123 nss-mdns ocl-icd openal openssl sane v4l-utils wine p7zip wget samba --needed
-    yay -Sy lib32-glibc lib32-libice lib32-libsm lib32-libx11 lib32-libxext lib32-libxi lib32-freetype2 lib32-libpng lib32-zlib lib32-lcms2 lib32-libgl lib32-libxcursor lib32-libxrandr lib32-glu lib32-alsa-lib lib32-fontconfig lib32-libcups lib32-libdbus lib32-libexif lib32-libldap lib32-libpulse lib32-gnutls lib32-libxcomposite lib32-libxinerama lib32-libxml2 lib32-libxslt lib32-mpg123 lib32-nss-mdns lib32-openal lib32-openssl lib32-v4l-utils --needed
+    $package_manager -Sy glibc libice libsm libx11 libxext libxi freetype2 libpng zlib lcms2 libgl libxcursor libxrandr glu alsa-lib fontconfig gnutls gsm libcups libdbus libexif libgphoto2 libldap libpulse libxcomposite libxinerama libxml2 libxslt libxxf86vm mpg123 nss-mdns ocl-icd openal openssl sane v4l-utils wine p7zip wget samba automake autoconf fakeroot make gcc --needed
+    $package_manager -Sy lib32-glibc lib32-libice lib32-libsm lib32-libx11 lib32-libxext lib32-libxi lib32-freetype2 lib32-libpng lib32-zlib lib32-lcms2 lib32-libgl lib32-libxcursor lib32-libxrandr lib32-glu lib32-alsa-lib lib32-fontconfig lib32-libcups lib32-libdbus lib32-libexif lib32-libldap lib32-libpulse lib32-gnutls lib32-libxcomposite lib32-libxinerama lib32-libxml2 lib32-libxslt lib32-mpg123 lib32-nss-mdns lib32-openal lib32-openssl lib32-v4l-utils --needed
 }
 install_wine() {
     local wine_folder="/home/$USER/.wine-msoffice/wine"
