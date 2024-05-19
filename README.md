@@ -11,3 +11,5 @@ Known issues:
 ```
 bash <(curl -s https://raw.githubusercontent.com/Troplo/office-install.sh/main/office-install.sh)
 ```
+
+If you can't type, wait a bit for it the activation popup and restart the Office program.
